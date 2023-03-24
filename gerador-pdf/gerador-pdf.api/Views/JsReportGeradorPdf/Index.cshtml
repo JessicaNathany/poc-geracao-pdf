@@ -1,0 +1,165 @@
+﻿@model gerador_pdf.api.Model.InvoiceModel
+
+<html>
+<head>
+    <link href="~/css/invoice.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="logo-box">
+        <!-- bloco conteúdo header -->
+        <div>
+            <img src="~/img/logo.png" style="width:100%; max-width:200px;" />
+
+            <span class="span-titulo">
+                SISTEMAS DE GESTÃO DE PROGRAMAS <br />
+                @DateTime.Now.ToString()
+            </span>
+
+            <hr class="linha-divisoria-logo">
+        </div>
+
+        <!--tabela informações gerais do roteiro -->
+        <div class="roteiro-box">
+            <table cellpadding="0" cellspacing="0">
+                @foreach (var item in Model.DetalhesRoteiro)
+                {
+                    <!-- bloc do PDF contendo infos gerais da gravação  -->
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">LIBERADO EM:</strong>
+                                <span class="titulo-item-td">@item.LiberadoEm</span>
+                            </td>
+                            <td>
+                                <strong class="titulo-td">ESTÚDIO:</strong> 
+                                <span class="titulo-item-td">@item.Estudio</span>
+                            </td>
+                            <td>
+                                <strong class="titulo-td">ROTEIRO:</strong>
+                                <span class="titulo-item-td">@item.Roteiro</span>
+                            </td>
+                            <td>
+                                <strong class="titulo-td">VERSÃO:</strong>
+                                <span class="titulo-item-td">@item.Versao</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <br />
+                    <br />
+
+                    <!-- bloco contendo informações do programa-->
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">PROGRAMA:</strong>
+                                <span class="titulo-item-td">@item.Programa</span>
+                            </td>
+                            <td>
+                                <strong class="titulo-td">DATA GRAVAÇÃO:</strong>
+                                <span class="titulo-item-td">@item.DataGravacao</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">LOCAL:</strong>
+                                <span class="titulo-item-td">@item.Local</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">DIREÇÃO:</strong>
+                                <span class="titulo-item-td">@item.Direcao</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">DIRETOR DE FRENTE:</strong>
+                                <span class="titulo-item-td">@item.DiretorFrente</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                 <strong class="titulo-td">OBSERVAÇÃO:</strong>
+                                 <span class="titulo-item-td">@item.Observacao</span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr class="heading">
+                        <tr class="item">
+                            <td>
+                                <strong class="titulo-td">TOTAL PÁG.:</strong>
+                                <span class="titulo-item-td">@item.TotalPaginas</span>
+                            </td>
+                        </tr>
+                    </tr>
+
+                    <!-- tabela com informações gerais do personagem -->
+                    <table class="tabela-info-personagem">
+                            <tr class="heading">
+                                <tr class="item">
+                                    <td>
+                                        <strong class="titulo-td">PERSONAGEM</strong>
+                                    </td>
+                                    <td>
+                                        <strong class="titulo-td">ROTEIROS</strong>
+                                    </td>
+                                    <td>
+                                        <strong class="titulo-td">NOME ARTÍSTICO</strong>
+                                    </td>
+                                    <td>
+                                        <strong class="titulo-td">HORA CHEGADA</strong>
+                                    </td>
+                                    <td>
+                                        <strong class="titulo-td">COMENTÁRIO</strong>
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td class="titulo-item-td">
+                                        <div class="titulo-item-td">@item.Personagem</div>
+                                    </td>
+                                    <td class="titulo-item-td">
+                                        <span class="titulo-item-td">@item.Roteiros</span>
+                                    </td>
+                                    <td class="titulo-item-td">
+                                        <span class="titulo-item-td">@item.NomeArtistico</span>
+                                    </td>
+                                    <td class="titulo-item-td">
+                                        <span class="titulo-item-td">@item.HoraChegada</span>
+                                    </td>
+                                    <td class="titulo-item-td">
+                                        <span class="titulo-item-td">@item.Comentario</span>
+                                    </td>
+                                </tr>
+                            </tr> <!-- fim-->
+                    </table> <!-- fim tabela com informações gerais do personagem-->
+
+                    <!-- tabela com informações de roupas do personagem-->
+                    <table class="tabela-info-roupa">
+                        <tr class="heading">
+                                <tr>
+                                    <p>LEGENDA:(*) ROUP C/CONT.(+) ROUPA EM MAIS DE UMA FRENTE(-) ROUPA S/ CONT. EM FRENTE ANTERIOR</p>
+                                <tr/>
+                                <tr class="item-roupa">
+                                    <tr class="item">
+                                        <td class"titulo-item-td">
+                                            <strong class="titulo-item-td">@item.Personagem : </strong>
+                                            <span class="titulo-item-td">@item.ItemRoupa</span>
+                                        </td>
+                                    </tr>
+                                </tr>
+                        </tr> <!-- fim heading-->
+                    </table> <!-- fim tabela com informações gerais do personagem-->
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>
